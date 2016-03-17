@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="">
+        <div>
+            <input type="text" id="zipcode" maxlength="3">
+            <select name="city" id="city"></select>
+            <select name="area" id="area"></select>
+            <select name="road" id="road"></select>
+        </div>
+        <div>
+            <input type="text" id="zipcode2" maxlength="3">
+            <select name="city" id="city2"></select>
+            <select name="area" id="area2"></select>
+            <select name="road" id="road2"></select>
+        </div>
+        <div>
+            <button id="testBtn" type="button">test</button>
+        </div>
+    </form>
+    <script src="https://code.jquery.com/jquery-1.12.1.min.js" integrity="sha256-I1nTg78tSrZev3kjvfdM5A5Ak/blglGzlaZANLPDl3I=" crossorigin="anonymous"></script>
+    <script src="js/twzip.js"></script>
+    <script>
+    var aaa = new twZip();
+    var bbb = new twZip({
+        cityElement: "#city2",
+        areaElement: "#area2",
+        roadElement: "#road2",
+        zipcodeElement: "#zipcode2",
+    });
+
+    $('#testBtn').click(function() {
+        aaa.changeValue(bbb.getValue());
+    })
+    </script>
+</body>
+
+</html>
