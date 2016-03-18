@@ -141,11 +141,11 @@ function twZip(options) {
             _list += "<option value='" + zip[_city][_area].road[i] + "' " + _selected + ">" + zip[_city][_area].road[i] + "</option>";
         }
 
-        roadElement.html(_list);
-
+        roadElement.html(_list);    
         if (settings.roadDefault) {
-            settings.roadDefault = null;
+           
             _self.currentValue.road = settings.roadDefault;
+             settings.roadDefault = null;
         } else {
             _self.currentValue.road = zip[_city][_area].road[0];
         }
