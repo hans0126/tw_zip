@@ -10,7 +10,8 @@ function twZip(options) {
         zipcodeElement: "#zipcode",
         cityDefault: null,
         areaDefault: null,
-        roadDefault: null
+        roadDefault: null,
+        zipTrigger: false
     }
 
     var settings = $.extend({}, defaults, options);
@@ -22,7 +23,7 @@ function twZip(options) {
 
     _self.currentValue = { city: null, area: null, road: null, zipcode: null }
 
-    _self.changeValue = function(_obj) {      
+    _self.changeValue = function(_obj) {
         settings.cityDefault = _obj.city;
         settings.areaDefault = _obj.area;
         settings.roadDefault = _obj.road;
@@ -54,16 +55,19 @@ function twZip(options) {
             _self.currentValue.road = $(this).val();
         })
 
-        zipcodeElement.blur(function() {
-            var re = searchByZipcode($(this).val());
-            if (re) {
-                settings.cityDefault = re.city;
-                settings.areaDefault = re.area;
-                createCityList();
-            }
-            // console.log(cityAndArea);
-        })
 
+        if (settings.zipTrigger) {
+
+            zipcodeElement.blur(function() {
+                var re = searchByZipcode($(this).val());
+                if (re) {
+                    settings.cityDefault = re.city;
+                    settings.areaDefault = re.area;
+                    createCityList();
+                }
+                // console.log(cityAndArea);
+            })
+        }
     }
 
     function createCityList() {
@@ -141,11 +145,11 @@ function twZip(options) {
             _list += "<option value='" + zip[_city][_area].road[i] + "' " + _selected + ">" + zip[_city][_area].road[i] + "</option>";
         }
 
-        roadElement.html(_list);    
+        roadElement.html(_list);
         if (settings.roadDefault) {
-           
+
             _self.currentValue.road = settings.roadDefault;
-             settings.roadDefault = null;
+            settings.roadDefault = null;
         } else {
             _self.currentValue.road = zip[_city][_area].road[0];
         }
@@ -173,6 +177,5 @@ function twZip(options) {
         return false;
     }
 
-  
-}
 
+}
