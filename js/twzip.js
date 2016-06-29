@@ -11,8 +11,10 @@ function twZip(options) {
         cityDefault: null,
         areaDefault: null,
         roadDefault: null,
-        zipTrigger: false
+        zipTrigger: false,
+        ignoreCity: []
     }
+
 
     var settings = $.extend({}, defaults, options);
 
@@ -75,12 +77,14 @@ function twZip(options) {
         var _default = null;
         for (var key in zip) {
             var _selected = '';
+          
+            if (settings.ignoreCity.indexOf(key) == -1) {
+                if (settings.cityDefault == key) {
+                    _selected = "selected";
+                }
 
-            if (settings.cityDefault == key) {
-                _selected = "selected";
+                _list += "<option value='" + key + "' " + _selected + ">" + key + "</option>";
             }
-
-            _list += "<option value='" + key + "' " + _selected + ">" + key + "</option>";
         }
 
         cityElement.html(_list);

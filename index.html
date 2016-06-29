@@ -11,6 +11,7 @@
         <ul>
             <li>可用郵遞區號找地區</li>
             <li>同步地址</li>
+              <li>忽略市</li>
         </ul>
         <table>
             <tr>
@@ -37,7 +38,7 @@
         </table>
     </form>
     <script src="https://code.jquery.com/jquery-1.12.1.min.js" integrity="sha256-I1nTg78tSrZev3kjvfdM5A5Ak/blglGzlaZANLPDl3I=" crossorigin="anonymous"></script>
-    <script src="js/twzip.min.js"></script>
+    <script src="js/twzip.js"></script>
     <script>
     var select1 = new twZip({
         cityElement: "#city",
@@ -46,7 +47,8 @@
         zipcodeElement: "#zipcode",
         cityDefault: "桃園市",
         areaDefault: "八德區",
-        roadDefault: "大火房"
+        roadDefault: "大火房",
+        ignoreCity:["釣魚臺","南海島","澎湖縣","金門縣","連江縣"]
     });
 
     var select2 = new twZip({
